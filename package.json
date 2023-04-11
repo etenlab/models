@@ -1,0 +1,45 @@
+{
+  "name": "@eten-lab/crowd-bible-models",
+  "version": "1.0.0",
+  "description": "crowd bible common db models",
+  "main": "dist/crowd-bible-models.cjs.js",
+  "module": "dist/crowd-bible-models.esm.js",
+  "browser": "dist/crowd-bible-models.umd.js",
+  "scripts": {
+    "dev": "rollup -c -w --bundleConfigAsCjs",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "test": "echo \"Error: no test specified yet\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etenlab/models.git"
+  },
+  "keywords": [
+    "eten-lab",
+    "models",
+    "crowd.bible"
+  ],
+  "author": "eten-lab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etenlab/models/issues"
+  },
+  "homepage": "https://github.com/etenlab/models#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7",
+    "rollup": "^3.20.2",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4"
+  }
+}
