@@ -1,6 +1,6 @@
 {
   "name": "@eten-lab/crowd-bible-models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "crowd bible common db models",
   "main": "dist/crowd-bible-models.cjs.js",
   "module": "dist/crowd-bible-models.esm.js",
