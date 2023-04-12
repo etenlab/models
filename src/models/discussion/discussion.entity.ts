@@ -8,7 +8,7 @@ export class Discussion {
 
   // @Column('varchar', { nullable: true })
   // table_name!: string;
-  @Column('char varying', { name: 'table_name' })
+  @Column('varchar', { name: 'table_name' })
   tableName!: string;
 
   @Column('int', { nullable: true })
