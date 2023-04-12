@@ -5,9 +5,10 @@ import {
   JoinColumn,
   OneToOne,
   Entity,
+  Relation,
 } from 'typeorm';
-import { Post } from './post.entity';
-import { File } from '../file/file.entity';
+import type { Post } from './post.entity';
+import type { File } from '../file/file.entity';
 
 @Entity({ name: 'relationship_post_files' })
 export class RelationshipPostFile {
@@ -17,22 +18,22 @@ export class RelationshipPostFile {
   @Column('bigint')
   post_id!: number;
 
-  @ManyToOne(() => Post, (post) => post.id, {
+  @ManyToOne('Post', (post: Post) => post.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'post_id' })
-  post!: Post;
+  post!: Relation<Post>;
 
   @Column('bigint')
   file_id!: number;
 
-  @OneToOne(() => File, (file) => file.id, {
+  @OneToOne('File', (file: File) => file.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({
     name: 'file_id',
   })
-  file!: File;
+  file!: Relation<File>;
 }

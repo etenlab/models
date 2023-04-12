@@ -6,10 +6,11 @@ import {
   OneToOne,
   JoinColumn,
   BeforeInsert,
+  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { Relationship } from './relationship.entity';
-import { RelationshipPropertyValue } from './relationship-property-value.entity';
+import type { RelationshipPropertyValue } from './relationship-property-value.entity';
 import { Syncable } from '../Syncable';
 
 import { TableNameConst } from '@/constants/table-name.constant';
@@ -30,19 +31,20 @@ export class RelationshipPropertyKey extends Syncable {
   @Column('varchar')
   property_key!: string;
 
-  @ManyToOne(() => Relationship, { onDelete: 'CASCADE' })
+  @ManyToOne('Relationship', { onDelete: 'CASCADE' })
   @JoinColumn({
     name: 'relationship_id',
     referencedColumnName: 'id',
   })
-  relationship!: Relationship;
+  relationship!: Relation<Relationship>;
 
   @Column('varchar')
   relationship_id!: string;
 
   @OneToOne(
-    () => RelationshipPropertyValue,
-    (relationshipPropertyValue) => relationshipPropertyValue.propertyKey,
+    'RelationshipPropertyValue',
+    (relationshipPropertyValue: RelationshipPropertyValue) =>
+      relationshipPropertyValue.propertyKey,
   )
-  propertyValue!: RelationshipPropertyValue;
+  propertyValue!: Relation<RelationshipPropertyValue>;
 }

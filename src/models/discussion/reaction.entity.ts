@@ -4,21 +4,22 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Relation,
 } from 'typeorm';
 import { Post } from './post.entity';
-import { User } from '../user/user.entity';
+import type { User } from '../user/user.entity';
 
 @Entity({ name: 'reactions' })
 export class Reaction {
   @PrimaryGeneratedColumn('increment', { type: 'integer' })
   id!: number;
 
-  @ManyToOne(() => Post, (post) => post.id, {
+  @ManyToOne('Post', (post: Post) => post.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'post_id' })
-  post!: Post;
+  post!: Relation<Post>;
 
   @Column('bigint')
   post_id!: number;
@@ -26,14 +27,14 @@ export class Reaction {
   @Column('bigint')
   user_id!: number;
 
-  @ManyToOne(() => User, (user) => user.id, {
+  @ManyToOne('User', (user: User) => user.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({
     name: 'user_id',
   })
-  user!: User;
+  user!: Relation<User>;
 
   @Column('varchar')
   content!: string;

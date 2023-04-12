@@ -5,9 +5,10 @@ import {
   OneToOne,
   JoinColumn,
   BeforeInsert,
+  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
-import { NodePropertyKey } from './node-property-key.entity';
+import type { NodePropertyKey } from './node-property-key.entity';
 import { Syncable } from '../Syncable';
 
 import { TableNameConst } from '@/constants/table-name.constant';
@@ -29,14 +30,14 @@ export class NodePropertyValue extends Syncable {
   property_value!: string;
 
   @OneToOne(
-    () => NodePropertyKey,
-    (nodePropertyKey) => nodePropertyKey.propertyValue,
+    'NodePropertyKey',
+    (nodePropertyKey: NodePropertyKey) => nodePropertyKey.propertyValue,
   )
   @JoinColumn({
     name: 'node_property_key_id',
     referencedColumnName: 'id',
   })
-  propertyKey!: NodePropertyKey;
+  propertyKey!: Relation<NodePropertyKey>;
 
   @Column('varchar')
   node_property_key_id!: string;

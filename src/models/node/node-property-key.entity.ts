@@ -6,9 +6,10 @@ import {
   OneToOne,
   JoinColumn,
   BeforeInsert,
+  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
-import { Node } from './node.entity';
+import type { Node } from './node.entity';
 import { NodePropertyValue } from './node-property-value.entity';
 import { Syncable } from '../Syncable';
 
@@ -30,9 +31,9 @@ export class NodePropertyKey extends Syncable {
   @Column('varchar')
   property_key!: string;
 
-  @ManyToOne(() => Node, (node) => node.propertyKeys, { onDelete: 'CASCADE' })
+  @ManyToOne('Node', (node: Node) => node.propertyKeys, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'node_id', referencedColumnName: 'id' })
-  node!: Node;
+  node!: Relation<Node>;
 
   @Column('varchar')
   node_id!: string;

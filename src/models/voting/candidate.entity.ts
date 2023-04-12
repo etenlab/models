@@ -7,10 +7,11 @@ import {
   ManyToOne,
   OneToMany,
   Index,
+  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 
-import { Election } from './election.entity';
+import type { Election } from './election.entity';
 import { Vote } from './vote.entity';
 
 import { Syncable } from '../Syncable';
@@ -32,9 +33,9 @@ export class Candidate extends Syncable {
   @Column('text', { nullable: true })
   readonly candidate_id!: string | null;
 
-  @ManyToOne(() => Election, { onDelete: 'CASCADE' })
+  @ManyToOne('Election', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'election_id', referencedColumnName: 'id' })
-  election!: Election;
+  election!: Relation<Election>;
 
   @Column('varchar')
   election_id!: string;
