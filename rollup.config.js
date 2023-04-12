@@ -1,21 +1,25 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
-import pkg from "./package.json";
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import pkg from './package.json';
+import globals from 'rollup-plugin-node-globals';
+import builtins from 'rollup-plugin-node-builtins';
 
 export default [
   // browser-friendly UMD build
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: {
-      name: "crowd-bible-models",
+      name: 'crowd-bible-models',
       file: pkg.browser,
-      format: "umd",
+      format: 'umd',
     },
     plugins: [
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      globals(),
+      builtins(),
+      typescript({ tsconfig: './tsconfig.json' }),
     ],
   },
 
@@ -26,11 +30,11 @@ export default [
   // an array for the `output` option, where we can specify
   // `file` and `format` for each target)
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
-      { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" },
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'es' },
     ],
-    plugins: [typescript({ tsconfig: "./tsconfig.json" })],
+    plugins: [typescript({ tsconfig: './tsconfig.json' })],
   },
 ];

@@ -38,8 +38,16 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.7",
     "rollup": "^3.20.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-polyfill-node": "^0.12.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.14"
   }
 }

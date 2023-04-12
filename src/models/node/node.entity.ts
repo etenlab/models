@@ -43,8 +43,8 @@ export class Node extends Syncable {
   propertyKeys!: NodePropertyKey[];
 
   @OneToMany(() => Relationship, (relationship) => relationship.fromNode)
-  nodeRelationships: Relationship[] | undefined;
+  toNodeRelationships: Relationship[] | undefined;
 
   @OneToMany(() => Relationship, (relationship) => relationship.toNode)
-  toNodeRelationships: Relationship[] | undefined;
+  fromNodeRelationships: Relationship[] | undefined;
 }
