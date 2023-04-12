@@ -13,8 +13,8 @@ import { NodePropertyKey } from './node-property-key.entity';
 import { Relationship } from '../relationship/relationship.entity';
 import { Syncable } from '../Syncable';
 import { NodeTypeConst } from '../../constants/graph.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-import { TableNameConst } from '@/constants/table-name.constant';
 
 @Entity({ name: TableNameConst.NODES })
 export class Node extends Syncable {

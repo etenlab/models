@@ -13,8 +13,7 @@ import { nanoid } from 'nanoid';
 import type { Candidate } from './candidate.entity';
 
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.VOTES })
 @Index(['candidate_id', 'user_id'], { unique: true })

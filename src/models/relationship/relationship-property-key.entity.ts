@@ -12,8 +12,8 @@ import { nanoid } from 'nanoid';
 import { Relationship } from './relationship.entity';
 import type { RelationshipPropertyValue } from './relationship-property-value.entity';
 import { Syncable } from '../Syncable';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-import { TableNameConst } from '@/constants/table-name.constant';
 
 @Entity({ name: TableNameConst.RELATIONSHIP_PROPERTY_KEYS })
 export class RelationshipPropertyKey extends Syncable {

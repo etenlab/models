@@ -15,8 +15,7 @@ import type { Election } from './election.entity';
 import { Vote } from './vote.entity';
 
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.CANDIDATES })
 @Index(['election_id', 'candidate_ref'], { unique: true })

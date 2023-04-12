@@ -1,7 +1,6 @@
 import { Entity, PrimaryColumn } from 'typeorm';
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.RELATIONSHIP_TYPES })
 export class RelationshipType extends Syncable {

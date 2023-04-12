@@ -13,11 +13,9 @@ import { nanoid } from 'nanoid';
 import { ElectionType } from './election-type.entity';
 import { Candidate } from './candidate.entity';
 
-import { ElectionTypeConst } from '@/constants/voting.constant';
-
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
+import { ElectionTypeConst } from '../../constants/voting.constant';
 
 @Entity({ name: TableNameConst.ELECTIONS })
 @Index(['election_type', 'election_ref', 'ref_table_name'], { unique: true })

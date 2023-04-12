@@ -9,8 +9,7 @@ import {
 import { nanoid } from 'nanoid';
 import { RelationshipPropertyKey } from './relationship-property-key.entity';
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.RELATIONSHIP_PROPERTY_VALUES })
 export class RelationshipPropertyValue extends Syncable {

@@ -12,8 +12,7 @@ import { nanoid } from 'nanoid';
 import type { Node } from './node.entity';
 import { NodePropertyValue } from './node-property-value.entity';
 import { Syncable } from '../Syncable';
-
-import { TableNameConst } from '@/constants/table-name.constant';
+import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.NODE_PROPERTY_KEYS })
 export class NodePropertyKey extends Syncable {
