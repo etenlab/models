@@ -9,14 +9,15 @@ import {
 } from 'typeorm';
 import type { Post } from './post.entity';
 import type { File } from '../file/file.entity';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-@Entity({ name: 'relationship_post_files' })
+@Entity({ name: TableNameConst.RELATIONSHIP_POST_FILES })
 export class RelationshipPostFile {
   @PrimaryGeneratedColumn('increment', { type: 'integer' })
   id!: number;
 
-  @Column('bigint')
-  post_id!: number;
+  @Column('bigint', { name: 'post_id' })
+  postId!: number;
 
   @ManyToOne('Post', (post: Post) => post.id, {
     nullable: false,
@@ -25,8 +26,8 @@ export class RelationshipPostFile {
   @JoinColumn({ name: 'post_id' })
   post!: Relation<Post>;
 
-  @Column('bigint')
-  file_id!: number;
+  @Column('bigint', { name: 'file_id' })
+  fileId!: number;
 
   @OneToOne('File', (file: File) => file.id, {
     nullable: false,

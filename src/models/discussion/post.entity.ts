@@ -12,14 +12,15 @@ import type { Discussion } from './discussion.entity';
 import { Reaction } from './reaction.entity';
 import { RelationshipPostFile } from './relationship-post-file.entity';
 import type { User } from '../user/user.entity';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-@Entity({ name: 'posts' })
+@Entity({ name: TableNameConst.POSTS })
 export class Post {
   @PrimaryGeneratedColumn('increment', { type: 'integer' })
   id!: number;
 
-  @Column('bigint')
-  discussion_id!: number;
+  @Column('bigint', { name: 'discussion_id' })
+  discussionId!: number;
 
   @ManyToOne('Discussion', (discussion: Discussion) => discussion.id, {
     nullable: false,
@@ -28,8 +29,8 @@ export class Post {
   @JoinColumn({ name: 'discussion_id' })
   discussion!: Relation<Discussion>;
 
-  @Column('bigint')
-  user_id!: number;
+  @Column('bigint', { name: 'user_id' })
+  userId!: number;
 
   @ManyToOne('User', (user: User) => user.id, {
     nullable: false,
@@ -40,17 +41,17 @@ export class Post {
   })
   user!: Relation<User>;
 
-  @Column('varchar')
-  quill_text!: string;
+  @Column('varchar', { name: 'quill_text' })
+  quillText!: string;
 
-  @Column('varchar')
-  plain_text!: string;
+  @Column('varchar', { name: 'plain_text' })
+  plainText!: string;
 
   @Column({ default: false, type: 'tinyint' })
-  is_edited!: boolean;
+  isEdited!: boolean;
 
   @Column({ type: 'bigint', nullable: true })
-  reply_id?: number;
+  replyId?: number;
 
   @ManyToOne(() => Post, (post) => post.id, {
     createForeignKeyConstraints: false,
@@ -61,12 +62,16 @@ export class Post {
   })
   reply?: Post;
 
-  @CreateDateColumn()
-  created_at?: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt?: Date;
 
   @OneToMany(() => Reaction, (reaction) => reaction.post)
   reactions?: Reaction[];
 
   @OneToMany(() => RelationshipPostFile, (file) => file.post)
   files?: RelationshipPostFile[];
+
+  // form cpg-server
+  @Column('varchar', { name: 'postgres_language' })
+  postgresLanguage!: string;
 }

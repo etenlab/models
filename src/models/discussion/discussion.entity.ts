@@ -1,13 +1,12 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from './post.entity';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-@Entity({ name: 'discussions' })
+@Entity({ name: TableNameConst.DISCUSSIONS })
 export class Discussion {
   @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'id' })
   id!: number;
 
-  // @Column('varchar', { nullable: true })
-  // table_name!: string;
   @Column('varchar', { name: 'table_name' })
   tableName!: string;
 

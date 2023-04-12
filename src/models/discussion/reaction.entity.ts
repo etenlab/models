@@ -8,8 +8,9 @@ import {
 } from 'typeorm';
 import { Post } from './post.entity';
 import type { User } from '../user/user.entity';
+import { TableNameConst } from '../../constants/table-name.constant';
 
-@Entity({ name: 'reactions' })
+@Entity({ name: TableNameConst.REACTIONS })
 export class Reaction {
   @PrimaryGeneratedColumn('increment', { type: 'integer' })
   id!: number;
@@ -21,11 +22,11 @@ export class Reaction {
   @JoinColumn({ name: 'post_id' })
   post!: Relation<Post>;
 
-  @Column('bigint')
-  post_id!: number;
+  @Column('bigint', { name: 'post_id' })
+  postId!: number;
 
-  @Column('bigint')
-  user_id!: number;
+  @Column('bigint', { name: 'user_id' })
+  userId!: number;
 
   @ManyToOne('User', (user: User) => user.id, {
     nullable: false,
