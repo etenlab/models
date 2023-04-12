@@ -20,9 +20,8 @@ export class Discussion {
   // from cpg-server
 
   @Column('integer', { name: 'app', default: () => '0' })
-  app!: number;
+  app?: number;
 
   @Column('integer', { name: 'org', default: () => '0' })
-  org!: number;
-
+  org?: number;
 }
