@@ -25,8 +25,8 @@ export class NodePropertyKey extends Syncable {
     this.id = nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly node_property_key_id!: string | null; // TODO: chack if needed an delete
+  // @Column('text', { nullable: true })
+  // readonly node_property_key_id!: string | null; // TODO: check if needed and delete
 
   @Column('varchar')
   property_key!: string; //TODO: naming

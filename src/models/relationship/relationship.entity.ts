@@ -26,8 +26,8 @@ export class Relationship extends Syncable {
     this.id = nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly relationship_id!: string | null; // TODO: check is it needed an delete
+  // @Column('text', { nullable: true })
+  // readonly relationship_id!: string | null; // TODO: check is it needed an delete
 
   @ManyToOne(() => RelationshipType, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'relationship_type', referencedColumnName: 'type_name' })

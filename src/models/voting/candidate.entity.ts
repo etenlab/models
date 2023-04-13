@@ -28,9 +28,8 @@ export class Candidate extends Syncable {
     this.id = nanoid();
   }
 
-  // TODO: looks redundant, check and delete
-  @Column('text', { nullable: true })
-  readonly candidate_id!: string | null;
+  // @Column('text', { nullable: true }) // TODO: check is it needed an delete
+  // readonly candidate_id!: string | null;
 
   @ManyToOne('Election', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'election_id', referencedColumnName: 'id' })
