@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Reaction } from '../discussion/reaction.entity';
 
 @Entity('users')
 export class User {
@@ -13,4 +14,8 @@ export class User {
 
   @Column('varchar', { nullable: true })
   last_name?: string;
+
+  // from cpg-server
+  @OneToMany(() => Reaction, (reactions) => reactions.user)
+  reactions?: Reaction[];
 }

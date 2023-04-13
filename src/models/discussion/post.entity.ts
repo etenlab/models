@@ -47,7 +47,7 @@ export class Post {
   @Column('varchar', { name: 'plain_text' })
   plainText!: string;
 
-  @Column({ default: false, type: 'tinyint' })
+  @Column({ default: false, type: 'boolean' })
   isEdited!: boolean;
 
   @Column({ type: 'bigint', nullable: true })
