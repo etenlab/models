@@ -5,6 +5,7 @@ import {
   OneToOne,
   JoinColumn,
   BeforeInsert,
+  UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { RelationshipPropertyKey } from './relationship-property-key.entity';
@@ -22,10 +23,10 @@ export class RelationshipPropertyValue extends Syncable {
   }
 
   @Column('text', { nullable: true })
-  readonly relationship_property_value_id!: string | null;
+  readonly relationship_property_value_id!: string | null; // TODO: check is it needed an delete
 
   @Column('varchar')
-  property_value!: string;
+  property_value!: string; //TODO: naming
 
   @OneToOne(() => RelationshipPropertyKey)
   @JoinColumn({
@@ -35,5 +36,10 @@ export class RelationshipPropertyValue extends Syncable {
   propertyKey!: RelationshipPropertyKey;
 
   @Column('varchar')
-  relationship_property_key_id!: string;
+  relationship_property_key_id!: string; //TODO: naming
+
+  // from cpg-server
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt?: Date;
 }

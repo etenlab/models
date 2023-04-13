@@ -6,6 +6,7 @@ import {
   JoinColumn,
   PrimaryColumn,
   BeforeInsert,
+  UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { NodeType } from './node-type.entity';
@@ -14,7 +15,6 @@ import { Relationship } from '../relationship/relationship.entity';
 import { Syncable } from '../Syncable';
 import { NodeTypeConst } from '../../constants/graph.constant';
 import { TableNameConst } from '../../constants/table-name.constant';
-
 
 @Entity({ name: TableNameConst.NODES })
 export class Node extends Syncable {
@@ -27,14 +27,14 @@ export class Node extends Syncable {
   }
 
   @Column('text', { nullable: true })
-  readonly node_id!: string | null;
+  readonly node_id!: string | null; // TODO: check if is it needed an delete
 
   @ManyToOne(() => NodeType, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'node_type', referencedColumnName: 'type_name' })
   nodeType!: NodeType;
 
   @Column('varchar')
-  node_type!: NodeTypeConst;
+  node_type!: NodeTypeConst; //TODO: naming
 
   @OneToMany(
     () => NodePropertyKey,
@@ -47,4 +47,9 @@ export class Node extends Syncable {
 
   @OneToMany(() => Relationship, (relationship) => relationship.toNode)
   fromNodeRelationships: Relationship[] | undefined;
+
+  // from cpg-server
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt?: Date;
 }
