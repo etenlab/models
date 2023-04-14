@@ -5,7 +5,6 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  BeforeInsert,
   Relation,
   UpdateDateColumn,
 } from 'typeorm';
@@ -18,13 +17,19 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.RELATIONSHIPS })
 export class Relationship extends Syncable {
-  @PrimaryColumn('uuid', { type: 'varchar', length: 21 })
-  id!: string;
-
-  @BeforeInsert()
-  setId() {
-    this.id = nanoid();
+  constructor() {
+    super();
+    this.id = this.id || nanoid();
   }
+
+  // We use constructor assigment in order to custom id (nanoid)
+  // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
+  // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 21,
+  })
+  id!: string;
 
   // @Column('text', { nullable: true })
   // readonly relationship_id!: string | null; // TODO: check is it needed an delete

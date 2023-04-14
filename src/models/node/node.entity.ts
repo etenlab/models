@@ -4,9 +4,8 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  PrimaryColumn,
-  BeforeInsert,
   UpdateDateColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { NodeType } from './node-type.entity';
@@ -16,6 +15,7 @@ import { Syncable } from '../Syncable';
 import { NodeTypeConst } from '../../constants/graph.constant';
 import { TableNameConst } from '../../constants/table-name.constant';
 
+// @Index('nodes_pkey', ['id'], { unique: true })
 @Entity({ name: TableNameConst.NODES })
 export class Node extends Syncable {
   constructor() {
@@ -23,13 +23,14 @@ export class Node extends Syncable {
     this.id = this.id || nanoid();
   }
 
-  @PrimaryColumn('uuid', { type: 'varchar', length: 21, unique: true })
+  // We use constructor assigment in order to custom id (nanoid)
+  // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
+  // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 21,
+  })
   id!: string;
-
-  @BeforeInsert()
-  setId() {
-    this.id = nanoid();
-  }
 
   // @Column('text', { nullable: true })
   // readonly node_id!: string | null; // TODO: check if is it needed an delete

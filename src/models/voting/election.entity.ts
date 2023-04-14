@@ -3,7 +3,6 @@ import {
   Entity,
   PrimaryColumn,
   JoinColumn,
-  BeforeInsert,
   ManyToOne,
   OneToMany,
   Index,
@@ -20,16 +19,22 @@ import { ElectionTypeConst } from '../../constants/voting.constant';
 @Entity({ name: TableNameConst.ELECTIONS })
 @Index(['election_type', 'election_ref', 'ref_table_name'], { unique: true })
 export class Election extends Syncable {
-  @PrimaryColumn('uuid', { type: 'varchar', length: 21, unique: true })
-  id!: string;
-
-  @BeforeInsert()
-  setId() {
-    this.id = nanoid();
+  constructor() {
+    super();
+    this.id = this.id || nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly election_id!: string | null;
+  // We use constructor assigment in order to custom id (nanoid)
+  // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
+  // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 21,
+  })
+  id!: string;
+
+  // @Column('text', { nullable: true })
+  // readonly election_id!: string | null; / TODO: check is it needed an delete
 
   @ManyToOne(() => ElectionType, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'election_type', referencedColumnName: 'type_name' })
