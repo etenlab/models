@@ -25,8 +25,8 @@ export class RelationshipPropertyKey extends Syncable {
     this.id = nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly relationship_property_key_id!: string | null; // TODO: check is it needed an delete
+  // @Column('text', { nullable: true })
+  // readonly relationship_property_key_id!: string | null; // TODO: check is it needed an delete
 
   @Column('varchar')
   property_key!: string; //TODO: naming

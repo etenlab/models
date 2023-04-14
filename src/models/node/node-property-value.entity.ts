@@ -23,8 +23,8 @@ export class NodePropertyValue extends Syncable {
     this.id = nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly node_property_value_id!: string | null; // TODO: chack if needed an delete
+  // @Column('text', { nullable: true })
+  // readonly node_property_value_id!: string | null; // TODO: chack if needed an delete
 
   @Column('varchar')
   property_value!: string; //TODO: naminig

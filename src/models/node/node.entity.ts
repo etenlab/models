@@ -18,6 +18,11 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.NODES })
 export class Node extends Syncable {
+  constructor() {
+    super();
+    this.id = this.id || nanoid();
+  }
+
   @PrimaryColumn('uuid', { type: 'varchar', length: 21, unique: true })
   id!: string;
 
@@ -26,8 +31,8 @@ export class Node extends Syncable {
     this.id = nanoid();
   }
 
-  @Column('text', { nullable: true })
-  readonly node_id!: string | null; // TODO: check if is it needed an delete
+  // @Column('text', { nullable: true })
+  // readonly node_id!: string | null; // TODO: check if is it needed an delete
 
   @ManyToOne(() => NodeType, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'node_type', referencedColumnName: 'type_name' })
