@@ -52,5 +52,5 @@ export class NodePropertyKey extends Syncable {
   // from cpg-server
 
   @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt?: Date;
+  updated_at?: Date;
 }
