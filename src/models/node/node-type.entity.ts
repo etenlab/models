@@ -7,7 +7,7 @@ export class NodeType extends Syncable {
   @PrimaryColumn('varchar')
   type_name!: string; //TODO: naming
 
-  // from cpg-server
+  // from cpg-server, keep naming covention
 
   @UpdateDateColumn({ name: 'updated_at' })
   updated_at?: Date;
