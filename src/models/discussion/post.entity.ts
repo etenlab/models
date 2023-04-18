@@ -6,8 +6,8 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  Relation,
 } from 'typeorm';
+import type { Relation } from 'typeorm';
 import type { Discussion } from './discussion.entity';
 import { Reaction } from './reaction.entity';
 import { RelationshipPostFile } from './relationship-post-file.entity';

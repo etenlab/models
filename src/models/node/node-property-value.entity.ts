@@ -4,10 +4,10 @@ import {
   PrimaryColumn,
   OneToOne,
   JoinColumn,
-  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
+import type { Relation } from 'typeorm';
 import type { NodePropertyKey } from './node-property-key.entity';
 import { Syncable } from '../Syncable';
 import { TableNameConst } from '../../constants/table-name.constant';

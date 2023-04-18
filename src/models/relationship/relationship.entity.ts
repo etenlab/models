@@ -5,10 +5,10 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
+import type { Relation } from 'typeorm';
 import type { Node } from '../node/node.entity';
 import { RelationshipType } from './relationship-type.entity';
 import { RelationshipPropertyKey } from './relationship-property-key.entity';

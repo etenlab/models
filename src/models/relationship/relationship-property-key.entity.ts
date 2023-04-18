@@ -5,11 +5,11 @@ import {
   ManyToOne,
   OneToOne,
   JoinColumn,
-  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { Relationship } from './relationship.entity';
+import type { Relation } from 'typeorm';
 import type { RelationshipPropertyValue } from './relationship-property-value.entity';
 import { Syncable } from '../Syncable';
 import { TableNameConst } from '../../constants/table-name.constant';

@@ -6,10 +6,10 @@ import {
   ManyToOne,
   OneToMany,
   Index,
-  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 
+import type { Relation } from 'typeorm';
 import type { Election } from './election.entity';
 import { Vote } from './vote.entity';
 

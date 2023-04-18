@@ -4,9 +4,9 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Relation,
 } from 'typeorm';
 import { Post } from './post.entity';
+import type { Relation } from 'typeorm';
 import type { User } from '../user/user.entity';
 import { TableNameConst } from '../../constants/table-name.constant';
 

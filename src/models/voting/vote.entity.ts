@@ -5,10 +5,10 @@ import {
   JoinColumn,
   Index,
   ManyToOne,
-  Relation,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 
+import type { Relation } from 'typeorm';
 import type { Candidate } from './candidate.entity';
 
 import { Syncable } from '../Syncable';

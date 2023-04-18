@@ -1,10 +1,5 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  Relation,
-} from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { TableNameConst } from '../../constants/table-name.constant';
 import type { RelationshipPostFile } from '../discussion/relationship-post-file.entity';
 

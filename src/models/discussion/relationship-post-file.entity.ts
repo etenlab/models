@@ -5,8 +5,8 @@ import {
   JoinColumn,
   OneToOne,
   Entity,
-  Relation,
 } from 'typeorm';
+import type { Relation } from 'typeorm';
 import type { Post } from './post.entity';
 import type { File } from '../file/file.entity';
 import { TableNameConst } from '../../constants/table-name.constant';
