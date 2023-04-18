@@ -14,7 +14,6 @@ import { Candidate } from './candidate.entity';
 
 import { Syncable } from '../Syncable';
 import { TableNameConst } from '../../constants/table-name.constant';
-import { ElectionTypeConst } from '../../constants/voting.constant';
 
 @Entity({ name: TableNameConst.ELECTIONS })
 @Index(['election_type', 'election_ref', 'ref_table_name'], { unique: true })
@@ -38,10 +37,10 @@ export class Election extends Syncable {
 
   @ManyToOne(() => ElectionType, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'election_type', referencedColumnName: 'type_name' })
-  electionType!: ElectionTypeConst;
+  electionType!: ElectionType;
 
   @Column('varchar')
-  election_type!: ElectionTypeConst;
+  election_type!: string;
 
   @Column({ type: 'varchar' })
   election_ref!: string;

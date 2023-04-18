@@ -12,7 +12,6 @@ import { NodeType } from './node-type.entity';
 import { NodePropertyKey } from './node-property-key.entity';
 import { Relationship } from '../relationship/relationship.entity';
 import { Syncable } from '../Syncable';
-import { NodeTypeConst } from '../../constants/graph.constant';
 import { TableNameConst } from '../../constants/table-name.constant';
 
 // @Index('nodes_pkey', ['id'], { unique: true })
@@ -40,7 +39,7 @@ export class Node extends Syncable {
   nodeType!: NodeType;
 
   @Column('varchar')
-  node_type!: NodeTypeConst; //TODO: naming
+  node_type!: string;
 
   @OneToMany(
     () => NodePropertyKey,
