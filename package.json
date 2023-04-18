@@ -60,6 +60,7 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.7",
     "size-limit": "^8.2.4",
+    "terser-webpack-plugin": "^5.3.7",
     "tsdx": "^0.14.1",
     "tslib": "^2.5.0",
     "typescript": "^3.9.10"
