@@ -5,7 +5,7 @@ import type { RelationshipPostFile } from '../discussion/relationship-post-file.
 
 @Entity({ name: TableNameConst.FILES })
 export class File {
-  @PrimaryGeneratedColumn('increment', { type: 'integer' })
+  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'file_id' })
   id!: number;
 
   @Column('varchar', { name: 'file_name' })
