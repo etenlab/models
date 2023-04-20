@@ -41,7 +41,7 @@ export class NodePropertyValue extends Syncable {
   )
   @JoinColumn({
     name: 'node_property_key_id',
-    referencedColumnName: 'node_property_key_id',
+    referencedColumnName: 'id',
   })
   propertyKey!: Relation<NodePropertyKey>;
 

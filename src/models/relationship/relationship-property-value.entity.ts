@@ -37,7 +37,7 @@ export class RelationshipPropertyValue extends Syncable {
   @OneToOne(() => RelationshipPropertyKey)
   @JoinColumn({
     name: 'relationship_property_key_id',
-    referencedColumnName: 'relationship_property_key_id',
+    referencedColumnName: 'id',
   })
   propertyKey!: RelationshipPropertyKey;
 

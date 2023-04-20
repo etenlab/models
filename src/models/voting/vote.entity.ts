@@ -36,7 +36,7 @@ export class Vote extends Syncable {
   // readonly vote_id!: string | null; // TODO: check is it needed an delete
 
   @ManyToOne('Candidate', { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'candidate_id', referencedColumnName: 'candidate_id' })
+  @JoinColumn({ name: 'candidate_id', referencedColumnName: 'id' })
   candidate!: Relation<Candidate>;
 
   @Column({ type: 'varchar' })
