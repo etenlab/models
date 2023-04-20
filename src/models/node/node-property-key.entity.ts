@@ -38,7 +38,7 @@ export class NodePropertyKey extends Syncable {
   property_key!: string; //TODO: naming
 
   @ManyToOne('Node', (node: Node) => node.propertyKeys, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'node_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'node_id', referencedColumnName: 'node_id' })
   node!: Relation<Node>;
 
   @Column('varchar')

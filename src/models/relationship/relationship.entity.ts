@@ -43,14 +43,14 @@ export class Relationship extends Syncable {
   relationship_type!: string; //TODO:naming
 
   @ManyToOne('Node', { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'from_node_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'from_node_id', referencedColumnName: 'node_id' })
   fromNode!: Relation<Node>;
 
   @Column('varchar')
   from_node_id!: string; //TODO:naming
 
   @ManyToOne('Node', { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'to_node_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'to_node_id', referencedColumnName: 'node_id' })
   toNode!: Relation<Node>;
 
   @Column('varchar')
