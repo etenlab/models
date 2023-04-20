@@ -30,6 +30,7 @@ export class Candidate extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'candidate_id',
   })
   id!: string;
 

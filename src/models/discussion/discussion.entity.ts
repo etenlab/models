@@ -4,7 +4,10 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.DISCUSSIONS })
 export class Discussion {
-  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'id' })
+  @PrimaryGeneratedColumn('increment', {
+    type: 'integer',
+    name: 'discussion_id',
+  })
   id!: number;
 
   @Column('varchar', { name: 'table_name' })

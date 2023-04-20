@@ -16,7 +16,7 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.POSTS })
 export class Post {
-  @PrimaryGeneratedColumn('increment', { type: 'integer' })
+  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'post_id' })
   id!: number;
 
   @Column('bigint', { name: 'discussion_id' })

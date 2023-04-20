@@ -13,7 +13,10 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.RELATIONSHIP_POST_FILES })
 export class RelationshipPostFile {
-  @PrimaryGeneratedColumn('increment', { type: 'integer' })
+  @PrimaryGeneratedColumn('increment', {
+    type: 'integer',
+    name: 'relationship_post_files_id',
+  })
   id!: number;
 
   @Column('bigint', { name: 'post_id' })

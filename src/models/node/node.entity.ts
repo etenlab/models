@@ -28,6 +28,7 @@ export class Node extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'node_id',
   })
   id!: string;
 

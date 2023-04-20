@@ -25,6 +25,7 @@ export class NodePropertyValue extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'node_property_value_id',
   })
   id!: string;
 

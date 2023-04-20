@@ -12,7 +12,7 @@ import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.REACTIONS })
 export class Reaction {
-  @PrimaryGeneratedColumn('increment', { type: 'integer' })
+  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'reaction_id' })
   id!: number;
 
   @ManyToOne('Post', (post: Post) => post.id, {
