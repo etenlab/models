@@ -15,7 +15,7 @@ import { TableNameConst } from '../../constants/table-name.constant';
 export class RelationshipPostFile {
   @PrimaryGeneratedColumn('increment', {
     type: 'integer',
-    name: 'relationship_post_files_id',
+    name: 'relationship_post_file_id',
   })
   id!: number;
 
