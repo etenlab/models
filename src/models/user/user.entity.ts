@@ -3,7 +3,7 @@ import { Reaction } from '../discussion/reaction.entity';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('increment', { type: 'integer' })
+  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'user_id' })
   id!: number;
 
   @Column({ type: 'varchar', unique: true, length: 255 })

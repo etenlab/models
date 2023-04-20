@@ -24,6 +24,7 @@ export class RelationshipPropertyValue extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'relationship_property_value_id',
   })
   id!: string;
 

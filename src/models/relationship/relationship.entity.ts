@@ -28,6 +28,7 @@ export class Relationship extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'relationship_id',
   })
   id!: string;
 

@@ -28,6 +28,7 @@ export class Vote extends Syncable {
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
+    name: 'vote_id',
   })
   id!: string;
 
