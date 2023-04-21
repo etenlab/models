@@ -20,6 +20,9 @@ export class File {
   @Column('varchar', { name: 'file_url' })
   fileUrl!: string;
 
+  @Column('varchar', { name: 'file_hash' })
+  fileHash!: string;
+
   @OneToOne(
     'RelationshipPostFile',
     (relationshipPostFile: RelationshipPostFile) => relationshipPostFile.file,
