@@ -5,22 +5,36 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
+import { nanoid } from 'nanoid';
 import type { Relation } from 'typeorm';
 import type { Discussion } from './discussion.entity';
 import { Reaction } from './reaction.entity';
 import { RelationshipPostFile } from './relationship-post-file.entity';
 import type { User } from '../user/user.entity';
 import { TableNameConst } from '../../constants/table-name.constant';
+import { Syncable } from '../Syncable';
 
 @Entity({ name: TableNameConst.POSTS })
-export class Post {
-  @PrimaryGeneratedColumn('increment', { type: 'integer', name: 'post_id' })
-  id!: number;
+export class Post extends Syncable {
+  constructor() {
+    super();
+    this.id = this.id || nanoid();
+  }
 
-  @Column('bigint', { name: 'discussion_id' })
-  discussionId!: number;
+  // We use constructor assigment in order to custom id (nanoid)
+  // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
+  // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 21,
+    name: 'post_id',
+  })
+  id!: string;
+
+  @Column('varchar', { name: 'discussion_id' })
+  discussionId!: string;
 
   @ManyToOne('Discussion', (discussion: Discussion) => discussion.id, {
     nullable: false,
