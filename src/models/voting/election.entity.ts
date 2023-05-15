@@ -52,6 +52,15 @@ export class Election extends Syncable {
   @Column({ type: 'varchar' })
   candidate_ref_table_name!: string;
 
+  @Column({ type: 'boolean', nullable: true })
+  site_text?: boolean;
+
+  @Column({ type: 'boolean', nullable: true })
+  site_text_translation?: boolean;
+
+  @Column({ type: 'varchar', nullable: true })
+  app?: string;
+
   @OneToMany(() => Candidate, (candidate) => candidate.election)
   candidates!: Candidate[];
 }

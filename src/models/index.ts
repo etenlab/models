@@ -20,9 +20,6 @@ import { Reaction } from './discussion/reaction.entity';
 import { RelationshipPostFile } from './discussion/relationship-post-file.entity';
 import { User } from './user/user.entity';
 
-import { SiteText } from './site-text/site-text.entity';
-import { SiteTextTranslation } from './site-text/site-text-translation.entity';
-
 export {
   Node,
   NodeType,
@@ -42,6 +39,4 @@ export {
   Election,
   Candidate,
   Vote,
-  SiteText,
-  SiteTextTranslation,
 };

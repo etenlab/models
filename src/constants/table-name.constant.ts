@@ -17,7 +17,4 @@ export enum TableNameConst {
   RELATIONSHIP_POST_FILES = 'relationship_post_files',
   POSTS = 'posts',
   DISCUSSIONS = 'discussions',
-
-  SITE_TEXT = 'site_texts',
-  SITE_TEXT_TRANSLATION = 'site_text_translations',
 }
