@@ -67,6 +67,6 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.12"
   }
 }
