@@ -16,7 +16,17 @@ import { Syncable } from '../Syncable';
 import { TableNameConst } from '../../constants/table-name.constant';
 
 @Entity({ name: TableNameConst.ELECTIONS })
-@Index(['election_type', 'election_ref', 'ref_table_name'], { unique: true })
+@Index(
+  [
+    'election_type',
+    'election_ref',
+    'ref_table_name',
+    'app',
+    'site_text',
+    'site_text_translation',
+  ],
+  { unique: true },
+)
 export class Election extends Syncable {
   constructor() {
     super();

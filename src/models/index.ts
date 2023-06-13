@@ -20,6 +20,9 @@ import { Reaction } from './discussion/reaction.entity';
 import { RelationshipPostFile } from './discussion/relationship-post-file.entity';
 import { User } from './user/user.entity';
 
+import { SyncSession } from './Sync';
+import { Syncable } from './Syncable';
+
 export {
   Node,
   NodeType,
@@ -39,4 +42,6 @@ export {
   Election,
   Candidate,
   Vote,
+  SyncSession,
+  Syncable,
 };
