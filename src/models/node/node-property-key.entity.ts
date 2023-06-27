@@ -5,6 +5,7 @@ import {
   ManyToOne,
   OneToOne,
   JoinColumn,
+  Index,
   UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
@@ -34,6 +35,7 @@ export class NodePropertyKey extends Syncable {
   // @Column('text', { nullable: true })
   // readonly node_property_key_id!: string | null; // TODO: check if needed and delete
 
+  @Index()
   @Column('varchar')
   property_key!: string; //TODO: naming
 
@@ -41,6 +43,7 @@ export class NodePropertyKey extends Syncable {
   @JoinColumn({ name: 'node_id', referencedColumnName: 'id' })
   node!: Relation<Node>;
 
+  @Index()
   @Column('varchar')
   node_id!: string; //TODO: naming
 

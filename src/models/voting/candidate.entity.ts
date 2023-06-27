@@ -41,9 +41,11 @@ export class Candidate extends Syncable {
   @JoinColumn({ name: 'election_id', referencedColumnName: 'id' })
   election!: Relation<Election>;
 
+  @Index()
   @Column('varchar')
   election_id!: string;
 
+  @Index()
   @Column({ type: 'varchar' })
   candidate_ref!: string;
 

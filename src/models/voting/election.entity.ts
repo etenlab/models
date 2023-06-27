@@ -50,15 +50,19 @@ export class Election extends Syncable {
   @JoinColumn({ name: 'election_type', referencedColumnName: 'type_name' })
   electionType!: ElectionType;
 
+  @Index()
   @Column('varchar')
   election_type!: string;
 
+  @Index()
   @Column({ type: 'varchar' })
   election_ref!: string;
 
+  @Index()
   @Column({ type: 'varchar' })
   ref_table_name!: string;
 
+  @Index()
   @Column({ type: 'varchar' })
   candidate_ref_table_name!: string;
 
@@ -68,6 +72,7 @@ export class Election extends Syncable {
   @Column({ type: 'boolean', nullable: true })
   site_text_translation?: boolean;
 
+  @Index()
   @Column({ type: 'varchar', nullable: true })
   app?: string;
 

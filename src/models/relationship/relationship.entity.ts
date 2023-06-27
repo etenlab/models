@@ -6,6 +6,7 @@ import {
   OneToMany,
   JoinColumn,
   UpdateDateColumn,
+  Index,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import type { Relation } from 'typeorm';
@@ -39,6 +40,7 @@ export class Relationship extends Syncable {
   @JoinColumn({ name: 'relationship_type', referencedColumnName: 'type_name' })
   relationshipType!: RelationshipType;
 
+  @Index()
   @Column('varchar')
   relationship_type!: string; //TODO:naming
 
@@ -46,6 +48,7 @@ export class Relationship extends Syncable {
   @JoinColumn({ name: 'from_node_id', referencedColumnName: 'id' })
   fromNode!: Relation<Node>;
 
+  @Index()
   @Column('varchar')
   from_node_id!: string; //TODO:naming
 
@@ -53,6 +56,7 @@ export class Relationship extends Syncable {
   @JoinColumn({ name: 'to_node_id', referencedColumnName: 'id' })
   toNode!: Relation<Node>;
 
+  @Index()
   @Column('varchar')
   to_node_id!: string; //TODO:naming
 

@@ -6,6 +6,7 @@ import {
   JoinColumn,
   UpdateDateColumn,
   PrimaryColumn,
+  Index,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { NodeType } from './node-type.entity';
@@ -39,6 +40,7 @@ export class Node extends Syncable {
   @JoinColumn({ name: 'node_type', referencedColumnName: 'type_name' })
   nodeType!: NodeType;
 
+  @Index()
   @Column('varchar')
   node_type!: string;
 

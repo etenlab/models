@@ -5,6 +5,7 @@ import {
   OneToOne,
   JoinColumn,
   UpdateDateColumn,
+  Index,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 import { RelationshipPropertyKey } from './relationship-property-key.entity';
@@ -31,6 +32,7 @@ export class RelationshipPropertyValue extends Syncable {
   // @Column('text', { nullable: true })
   // readonly relationship_property_value_id!: string | null; // TODO: check is it needed an delete
 
+  @Index()
   @Column('varchar')
   property_value!: string; //TODO: naming
 
@@ -41,6 +43,7 @@ export class RelationshipPropertyValue extends Syncable {
   })
   propertyKey!: RelationshipPropertyKey;
 
+  @Index()
   @Column('varchar')
   relationship_property_key_id!: string; //TODO: naming
 
