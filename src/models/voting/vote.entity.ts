@@ -5,6 +5,7 @@ import {
   JoinColumn,
   Index,
   ManyToOne,
+  UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 
@@ -49,4 +50,7 @@ export class Vote extends Syncable {
 
   @Column({ type: 'boolean' })
   vote!: boolean;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updated_at?: Date;
 }

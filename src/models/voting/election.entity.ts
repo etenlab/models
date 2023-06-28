@@ -6,6 +6,7 @@ import {
   ManyToOne,
   OneToMany,
   Index,
+  UpdateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
 
@@ -78,4 +79,7 @@ export class Election extends Syncable {
 
   @OneToMany(() => Candidate, (candidate) => candidate.election)
   candidates!: Candidate[];
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updated_at?: Date;
 }
