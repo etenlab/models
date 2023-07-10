@@ -1,73 +1,107 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import {
   Column,
-  CreateDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryColumn,
+  BeforeInsert,
+  JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { nanoid } from 'nanoid';
-import type { Relation } from 'typeorm';
-import type { Discussion } from './discussion.entity';
+
+import { Discussion } from './discussion.entity';
 import { Reaction } from './reaction.entity';
 import { RelationshipPostFile } from './relationship-post-file.entity';
-import type { User } from '../user/user.entity';
-import { TableNameConst } from '../../constants/table-name.constant';
-import { Syncable } from '../Syncable';
+import { User } from '../user/user.entity';
 
+import { TableNameConst } from '../../constants/table-name.constant';
+
+@ObjectType()
 @Entity({ name: TableNameConst.POSTS })
-export class Post extends Syncable {
+export class Post {
   constructor() {
-    super();
-    this.id = this.id || nanoid();
+    this.post_id = this.post_id || nanoid();
   }
 
   // We use constructor assigment in order to custom id (nanoid)
   // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
   // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @Field()
   @PrimaryColumn({
     type: 'varchar',
     length: 21,
-    name: 'post_id',
   })
-  id!: string;
+  post_id!: string;
 
-  @Column('varchar', { name: 'discussion_id' })
-  discussionId!: string;
+  @Field()
+  @Column({ type: 'varchar', length: 21 })
+  discussion_id!: string;
 
-  @ManyToOne('Discussion', (discussion: Discussion) => discussion.id, {
+  @Field(() => String, { nullable: true })
+  @Column({ type: 'varchar', length: 21, nullable: true })
+  reply_id?: string;
+
+  @Field(() => String)
+  @Column({ type: 'varchar', length: 21 })
+  user_id!: string;
+
+  @Field()
+  @Column('varchar')
+  quill_text!: string;
+
+  @Field()
+  @Column('varchar')
+  plain_text!: string;
+
+  @Column({ type: 'varchar', default: 'simple' })
+  @Field(() => String, { nullable: false, defaultValue: 'simple' })
+  postgres_language!: string;
+
+  @Field(() => Boolean, { defaultValue: false })
+  @Column({ type: 'boolean', default: false })
+  is_edited!: boolean;
+
+  @BeforeInsert()
+  setCreateDate(): void {
+    this.created_at = new Date();
+  }
+
+  @CreateDateColumn()
+  @Field(() => Date)
+  created_at!: Date;
+
+  @ManyToOne(() => Discussion, (discussion) => discussion.discussion_id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'discussion_id' })
-  discussion!: Relation<Discussion>;
+  discussion?: Discussion;
 
-  @Column('bigint', { name: 'user_id' })
-  userId!: number;
+  @Field(() => [Reaction], { nullable: 'items' })
+  @OneToMany(() => Reaction, (reaction) => reaction.post)
+  reactions!: Reaction[];
 
-  @ManyToOne('User', (user: User) => user.id, {
+  @Field(() => [RelationshipPostFile], { nullable: 'items' })
+  @OneToMany(
+    () => RelationshipPostFile,
+    (relationshipPostFile) => relationshipPostFile.post,
+  )
+  files!: RelationshipPostFile[];
+
+  @Field(() => User)
+  @ManyToOne(() => User, (user) => user.user_id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({
     name: 'user_id',
   })
-  user!: Relation<User>;
+  user!: User;
 
-  @Column('varchar', { name: 'quill_text' })
-  quillText!: string;
-
-  @Column('varchar', { name: 'plain_text' })
-  plainText!: string;
-
-  @Column({ default: false, type: 'boolean' })
-  isEdited!: boolean;
-
-  @Column({ type: 'bigint', nullable: true })
-  replyId?: number;
-
-  @ManyToOne(() => Post, (post) => post.id, {
+  @Field(() => Post, { nullable: true })
+  @ManyToOne(() => Post, (post) => post.post_id, {
     createForeignKeyConstraints: false,
     nullable: true,
   })
@@ -75,17 +109,4 @@ export class Post extends Syncable {
     name: 'reply_id',
   })
   reply?: Post;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt?: Date;
-
-  @OneToMany(() => Reaction, (reaction) => reaction.post)
-  reactions?: Reaction[];
-
-  @OneToMany(() => RelationshipPostFile, (file) => file.post)
-  files?: RelationshipPostFile[];
-
-  // form cpg-server
-  @Column('varchar', { name: 'postgres_language' })
-  postgresLanguage!: string;
 }

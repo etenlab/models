@@ -1,43 +1,58 @@
+import { ObjectType, Field } from '@nestjs/graphql';
 import {
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
+  PrimaryColumn,
+  OneToOne,
   ManyToOne,
   JoinColumn,
-  OneToOne,
-  Entity,
 } from 'typeorm';
-import type { Relation } from 'typeorm';
-import type { Post } from './post.entity';
-import type { File } from '../file/file.entity';
+import { nanoid } from 'nanoid';
+
+import { File } from '../file/file.entity';
+
+import { Post } from './post.entity';
+
 import { TableNameConst } from '../../constants/table-name.constant';
 
+@ObjectType()
 @Entity({ name: TableNameConst.RELATIONSHIP_POST_FILES })
 export class RelationshipPostFile {
-  @PrimaryGeneratedColumn('increment', {
-    type: 'integer',
-    name: 'relationship_post_file_id',
+  constructor() {
+    this.relationship_post_file_id = this.relationship_post_file_id || nanoid();
+  }
+
+  // We use constructor assigment in order to custom id (nanoid)
+  // be created upon entity creation(so we can use it while building relations before entity instance  was saved)
+  // We don't want to use @BeforeIsert() to set up id because we dont want id to be changed.
+  @Field()
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 21,
   })
-  id!: number;
+  relationship_post_file_id!: string;
 
-  @Column('bigint', { name: 'post_id' })
-  postId!: number;
+  @Field()
+  @Column({ type: 'varchar', length: 21 })
+  post_id!: string;
 
-  @ManyToOne('Post', (post: Post) => post.id, {
+  @Column()
+  file_id!: number;
+
+  @ManyToOne(() => Post, (post) => post.post_id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'post_id' })
-  post!: Relation<Post>;
+  post!: Post;
 
-  @Column('bigint', { name: 'file_id' })
-  fileId!: number;
-
-  @OneToOne('File', (file: File) => file.id, {
+  @Field(() => File)
+  @OneToOne(() => File, (file) => file.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
   @JoinColumn({
     name: 'file_id',
   })
-  file!: Relation<File>;
+  file!: File;
 }
